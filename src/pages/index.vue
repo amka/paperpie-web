@@ -16,6 +16,6 @@ const notesStore = useNotesStore();
 <style lang="scss">
 #editor-container {
   max-width: 920px;
-  background-color: rgb(var(--v-theme-on-surface-variant));
+  // background-color: rgb(var(--v-theme-on-surface-variant));
 }
 </style>

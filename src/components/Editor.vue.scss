@@ -24,7 +24,7 @@
 
   ul,
   ol {
-    margin-left: 1rem;
+    margin-left: 2rem;
   }
 
   p,
@@ -35,14 +35,17 @@
 
   h1 {
     margin-top: 2rem;
+    color: rgb(var(--v-theme-primary));
   }
 
   h2 {
     margin-top: 1.6rem;
+    color: rgb(var(--v-theme-secondary));
   }
 
   h3 {
     margin-top: 1.3rem;
+    color: rgb(var(--v-theme-tertiary));
   }
 
   h4 {
@@ -65,5 +68,20 @@
       font-size: small;
       top: -13px;
     }
+  }
+
+  blockquote {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    // margin-left: -1rem;
+    padding-left: 1rem;
+    border-left: 0.25rem solid rgb(var(--v-theme-secondary-darken-1));
+    font-style: oblique;
+    background-color: rgba(var(--v-theme-on-secondary-darken-1), 0.3);
+    color: rgba(var(--v-theme-on-surface), 0.7);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    // border-top-right-radius: 1rem;
+    // border-bottom-right-radius: 1rem;
   }
 }

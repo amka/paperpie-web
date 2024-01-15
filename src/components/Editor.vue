@@ -6,6 +6,7 @@
 import { useEditor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
+import Blockquote from "@tiptap/extension-blockquote";
 
 import { INote } from "../models/inote";
 import { PropType, onBeforeUnmount, watch } from "vue";
@@ -24,6 +25,11 @@ const editor = useEditor({
     StarterKit,
     Placeholder.configure({
       placeholder: "Write something…",
+    }),
+    Blockquote.configure({
+      HTMLAttributes: {
+        class: "paper-blockquote",
+      },
     }),
   ],
   autofocus: true,
