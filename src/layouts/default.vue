@@ -1,19 +1,16 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="appState.sidebarVisible">
-      <SidebarDrawer />
-    </v-navigation-drawer>
+    <SidebarDrawer />
 
     <DefaultBar />
 
     <DefaultView />
+
+    <PreferencesSheet />
   </v-app>
 </template>
 
 <script lang="ts" setup>
 import DefaultBar from "./default/AppBar.vue";
 import DefaultView from "./default/View.vue";
-import { useAppStore } from "@/store/app";
-
-const appState = useAppStore();
 </script>

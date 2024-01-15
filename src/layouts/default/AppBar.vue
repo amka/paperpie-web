@@ -8,9 +8,10 @@
     <div class="note-title mx-4" v-if="notesStore.currentNote">
       {{ notesStore.currentNote.title }}
     </div>
+    <v-btn variant="tonal" color="primary" @click="notesStore.createNote()" prepend-icon="mdi-plus">Note</v-btn>
     <v-spacer />
 
-    <v-btn variant="tonal" color="primary" @click="notesStore.createNote()">New Note</v-btn>
+    <v-btn  icon="mdi-cog-outline" @click="appState.showPreferences = true"></v-btn>
   </v-app-bar>
 </template>
 
