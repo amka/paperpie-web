@@ -80,8 +80,13 @@
     background-color: rgba(var(--v-theme-on-secondary-darken-1), 0.3);
     color: rgba(var(--v-theme-on-surface), 0.7);
     padding: 1rem;
-    border-radius: 0.5rem;
-    // border-top-right-radius: 1rem;
-    // border-bottom-right-radius: 1rem;
+    border-radius: 0.34rem;
+  }
+
+  code {
+    background-color: rgb(var(--v-theme-code));
+    color: rgb(var(--v-theme-on-code));
+    border-radius: 4px;
+    padding: 0 4px;
   }
 }

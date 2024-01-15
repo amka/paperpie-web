@@ -10,7 +10,9 @@
   "dependencies": {
     "@mdi/font": "7.0.96",
     "@tiptap/extension-blockquote": "^2.1.16",
+    "@tiptap/extension-highlight": "^2.1.16",
     "@tiptap/extension-placeholder": "^2.1.16",
+    "@tiptap/extension-typography": "^2.1.16",
     "@tiptap/pm": "^2.1.16",
     "@tiptap/starter-kit": "^2.1.16",
     "@tiptap/vue-3": "^2.1.16",
