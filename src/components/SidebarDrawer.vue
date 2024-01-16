@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-model="appState.sidebarVisible">
+  <v-navigation-drawer v-model="appState.sidebarVisible" style="position: fixed;">
     <div id="sidebar-header" class="pa-8">
       <v-row justify="space-between">
         <div class="text-h5">Paper Pie</div>
