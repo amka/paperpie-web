@@ -1,6 +1,10 @@
 <template>
-  <v-navigation-drawer v-model="appState.sidebarVisible" style="position: fixed;">
-    <div id="sidebar-header" class="pa-8">
+  <v-navigation-drawer
+    v-model="appState.sidebarVisible"
+
+    floating
+  >
+    <!-- <div id="sidebar-header" class="pa-8">
       <v-row justify="space-between">
         <div class="text-h5">Paper Pie</div>
 
@@ -9,16 +13,29 @@
       </v-row>
 
       <v-row class="mt-6">
-        <v-btn block variant="tonal" color="primary" @click="notesStore.createNote()">New Note</v-btn>
+        <v-btn
+          block
+          variant="tonal"
+          color="primary"
+          @click="notesStore.createNote()"
+          >New Note</v-btn
+        >
       </v-row>
-    </div>
+    </div> -->
 
     <v-list :selected="[notesStore.currentNote?.noteId]" class="px-4">
       <v-list-subheader>Notes</v-list-subheader>
       <template v-if="notesStore.notes != undefined">
         <template v-for="note in notesStore.notes" :key="note.noteId">
-          <v-list-item :value="note.noteId" @click="notesStore.currentNote = note" :title="note.title" color="primary"
-            rounded="rounded" density="compact" nav>
+          <v-list-item
+            :value="note.noteId"
+            @click="notesStore.currentNote = note"
+            :title="note.title"
+            color="primary"
+            rounded="rounded"
+            density="compact"
+            nav
+          >
           </v-list-item>
         </template>
       </template>
@@ -27,12 +44,17 @@
       </template>
     </v-list>
 
-    <template v-slot:append>
+    <!-- <template v-slot:append>
       <v-divider class="mx-4" />
       <div class="pa-4">
-          <v-btn variant="tonal" block text="Preferences" @click="appState.showPreferences = true"></v-btn>
+        <v-btn
+          variant="tonal"
+          block
+          text="Preferences"
+          @click="appState.showPreferences = true"
+        ></v-btn>
       </div>
-    </template>
+    </template> -->
   </v-navigation-drawer>
 </template>
 
@@ -52,6 +74,6 @@ onMounted(async () => {
 <style lang="scss">
 #sidebar-header {
   // height: 128px;
-  background-color: rgb(var(--v-theme-on-surface-variant));
+  // background-color: rgb(var(--v-theme-on-surface-variant));
 }
 </style>

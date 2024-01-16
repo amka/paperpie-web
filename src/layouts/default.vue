@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <SidebarDrawer />
-
     <DefaultBar />
+
+    <SidebarDrawer />
 
     <DefaultView />
 
