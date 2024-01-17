@@ -2,9 +2,15 @@
   <v-navigation-drawer
     v-model="appState.sidebarVisible"
     floating
+    style="position: fixed"
   >
-    <v-list :selected="[notesStore.currentNote?.noteId]" class="px-4">
-      <v-list-subheader>Notes</v-list-subheader>
+
+    <template v-slot:prepend>
+      <div class="text-overline px-4">Notes</div>
+    </template>
+
+    <v-list :selected="[notesStore.currentNote?.noteId]" class="px-2">
+      <!--      <v-list-subheader>Notes</v-list-subheader>-->
       <template v-for="note in notesStore.notes" :key="note.noteId">
         <v-list-item
           :title="note.title!.length > 0 ? note.title  : 'Untitled Note'"
@@ -34,9 +40,3 @@ onMounted(async () => {
 });
 </script>
 
-<style lang="scss">
-#sidebar-header {
-  // height: 128px;
-  // background-color: rgb(var(--v-theme-on-surface-variant));
-}
-</style>

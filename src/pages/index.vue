@@ -3,7 +3,6 @@
     <div id="editor-container" class="pa-4 mx-auto rounded-lg">
       <Editor v-model="notesStore.currentNote" />
     </div>
-    <v-divider />
   </v-container>
 </template>
 

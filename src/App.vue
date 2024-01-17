@@ -3,6 +3,11 @@
     <v-main>
       <router-view />
     </v-main>
+    <VLayoutItem position="bottom" class="text-end" size="88">
+      <div class="ma-4">
+        <VBtn icon="mdi-plus" size="large" color="primary" elevation="8" />
+      </div>
+    </VLayoutItem>
   </v-app>
 </template>
 

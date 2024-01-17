@@ -1,5 +1,5 @@
 <template>
-  <v-main scrollable>
+  <v-main>
     <router-view />
   </v-main>
 </template>
