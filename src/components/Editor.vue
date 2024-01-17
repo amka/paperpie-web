@@ -17,6 +17,7 @@ import Typography from "@tiptap/extension-typography";
 
 import {INote} from "@/models/inote";
 import {onBeforeUnmount, PropType, ref, watch} from "vue";
+import {Link} from "@tiptap/extension-link";
 
 const props = defineProps({
   modelValue: {
@@ -37,6 +38,7 @@ const editor = useEditor({
     }),
     Highlight,
     Typography,
+    Link,
   ],
   autofocus: false,
   content: props.modelValue?.content,
