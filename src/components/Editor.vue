@@ -60,9 +60,6 @@ watch(
 
     editor.value?.commands.setContent(newValue.content, false);
     title.value = newValue.title ?? "";
-    if (!editor.value?.isFocused) {
-      editor.value?.commands.focus();
-    }
   }
 );
 
