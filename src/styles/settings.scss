@@ -19,3 +19,33 @@
 html, body {
   //overflow: hidden;
 }
+
+html,
+.custom-scrollbar .v-navigation-drawer__content {
+  //scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color .3s;
+
+  &:hover {
+    scrollbar-color: rgb(var(--v-theme-on-surface-variant)) transparent;
+  }
+
+  &:not(:hover)::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    transition: background 0.3s;
+    background: rgba(var(--v-theme-on-background), 0.75);
+  }
+}
+
+
+.flex-none {
+  flex: unset;
+}

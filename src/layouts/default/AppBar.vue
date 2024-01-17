@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar style="position: sticky" scroll-behavior="elevate">
+  <v-app-bar scroll-behavior="elevate" style="position: sticky">
     <v-btn
       icon="bi bi-layout-sidebar-inset"
       @click.stop="appState.sidebarVisible = !appState.sidebarVisible"
@@ -9,11 +9,12 @@
 
     <div class="flex-grow-1">
       <v-btn
+        color="primary"
         prepend-icon="bi bi-file-earmark-plus-fill"
         variant="tonal"
-        color="primary"
         @click="notesStore.createNote()"
-      >Note</v-btn
+      >Note
+      </v-btn
       >
     </div>
 
@@ -26,17 +27,11 @@
 </template>
 
 <script lang="ts" setup>
-import { useDisplay } from "vuetify";
-import { useAppStore } from "@/store/app";
-import { useNotesStore } from "@/store/notes";
+import {useDisplay} from "vuetify";
+import {useAppStore} from "@/store/app";
+import {useNotesStore} from "@/store/notes";
 
-const { mobile } = useDisplay();
+const {mobile} = useDisplay();
 const appState = useAppStore();
 const notesStore = useNotesStore();
 </script>
-
-<style>
-.v-toolbar-title {
-  flex: unset;
-}
-</style>

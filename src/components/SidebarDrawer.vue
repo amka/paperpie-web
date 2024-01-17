@@ -3,6 +3,7 @@
     v-model="appState.sidebarVisible"
     floating
     style="position: fixed"
+    class="custom-scrollbar"
   >
 
     <template v-slot:prepend>
