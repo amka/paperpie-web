@@ -1,17 +1,22 @@
 <template>
-  <editor-content :editor="editor" class="h-100" />
+  <div id="editor-box">
+    <v-text-field v-model="title" :autocapitalize="true" :autofocus="true" variant="plain" placeholder="Title"
+                  class="document-title"
+                  @change="onTitleChange"/>
+    <v-divider class="mb-6" />
+    <editor-content :editor="editor" class="h-100"/>
+  </div>
 </template>
 
-<script setup lang="ts">
-import { useEditor, EditorContent } from "@tiptap/vue-3";
+<script lang="ts" setup>
+import {EditorContent, useEditor} from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
-import Blockquote from "@tiptap/extension-blockquote";
 import Highlight from "@tiptap/extension-highlight";
 import Typography from "@tiptap/extension-typography";
 
-import { INote } from "../models/inote";
-import { PropType, onBeforeUnmount, watch } from "vue";
+import {INote} from "@/models/inote";
+import {onBeforeUnmount, PropType, ref, watch} from "vue";
 
 const props = defineProps({
   modelValue: {
@@ -21,6 +26,8 @@ const props = defineProps({
 
 const emits = defineEmits(["update:modelValue"]);
 
+const title = ref("");
+
 // Define the initial state of the Editor
 const editor = useEditor({
   extensions: [
@@ -28,22 +35,14 @@ const editor = useEditor({
     Placeholder.configure({
       placeholder: "Write something…",
     }),
-    Blockquote.configure({
-      HTMLAttributes: {
-        class: "paper-blockquote",
-      },
-    }),
     Highlight,
     Typography,
   ],
-  autofocus: true,
-  injectCSS: false,
+  autofocus: false,
   content: props.modelValue?.content,
-  onUpdate: ({ editor }) => {
+  onUpdate: ({editor}) => {
     if (props.modelValue != undefined) {
-      const model = props.modelValue!;
-      model.content = editor.getJSON();
-      emits("update:modelValue", model);
+      emitUpdate()
     }
   },
 });
@@ -60,11 +59,25 @@ watch(
     }
 
     editor.value?.commands.setContent(newValue.content, false);
+    title.value = newValue.title ?? "";
     if (!editor.value?.isFocused) {
       editor.value?.commands.focus();
     }
   }
 );
+
+const emitUpdate = () => {
+  if (editor.value != undefined) {
+    const model = props.modelValue!;
+    model.content = editor.value!.getJSON();
+    model.title = title.value;
+    emits("update:modelValue", model);
+  }
+}
+
+const onTitleChange = (value: string) => {
+  emitUpdate()
+};
 
 // Cleanup
 onBeforeUnmount(() => {
@@ -72,4 +85,4 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style lang="scss" src="./Editor.vue.scss" />
+<style lang="scss" src="./Editor.vue.scss"/>

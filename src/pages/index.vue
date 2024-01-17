@@ -1,8 +1,9 @@
 <template>
   <v-container class="h-100">
-    <div id="editor-container" class="h-100 pa-4 mx-auto rounded-lg">
+    <div id="editor-container" class="pa-4 mx-auto rounded-lg">
       <Editor v-model="notesStore.currentNote" />
     </div>
+    <v-divider />
   </v-container>
 </template>
 
@@ -16,6 +17,7 @@ const notesStore = useNotesStore();
 <style lang="scss">
 #editor-container {
   max-width: 920px;
-  // background-color: rgb(var(--v-theme-on-surface-variant));
+  min-height: 100%;
+  background-color: rgba(var(--v-theme-on-surface-variant), 0.07);
 }
 </style>
