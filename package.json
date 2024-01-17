@@ -16,6 +16,7 @@
     "@tiptap/pm": "^2.1.16",
     "@tiptap/starter-kit": "^2.1.16",
     "@tiptap/vue-3": "^2.1.16",
+    "bootstrap-icons": "^1.11.3",
     "core-js": "^3.34.0",
     "dayjs": "^1.11.10",
     "localforage": "^1.10.0",

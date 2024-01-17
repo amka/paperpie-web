@@ -1,7 +1,7 @@
 <template>
   <v-app-bar flat style="position: sticky">
     <v-btn
-      icon="mdi-menu"
+      icon="bi bi-layout-sidebar-inset"
       @click.stop="appState.sidebarVisible = !appState.sidebarVisible"
     />
 
@@ -12,12 +12,12 @@
       variant="tonal"
       color="primary"
       @click="notesStore.createNote()"
-      prepend-icon="mdi-plus"
+      prepend-icon="bi bi-file-earmark-plus-fill"
       >Note</v-btn
     >
 
     <v-btn
-      icon="mdi-cog-outline"
+      icon="bi bi-gear"
       @click="appState.showPreferences = true"
     ></v-btn>
   </v-app-bar>
