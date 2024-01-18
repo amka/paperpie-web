@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <DefaultBar />
+<!--    <DefaultBar />-->
 
     <SidebarDrawer />
 

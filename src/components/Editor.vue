@@ -1,9 +1,10 @@
 <template>
   <div id="editor-box">
-    <v-text-field v-model="title" :autocapitalize="true" :autofocus="true" variant="plain" placeholder="Title"
-                  class="document-title"
-                  @change="onTitleChange"/>
-    <v-divider class="mb-6" />
+    <v-text-field v-model="title" :autocapitalize="true" :autofocus="true" class="document-title" placeholder="Title"
+                  variant="plain"
+                  @change="onTitleChange"
+                  @keyup.enter="editor?.commands.focus('start')"/>
+    <v-divider class="mb-6"/>
     <editor-content :editor="editor" class="h-100"/>
   </div>
 </template>
@@ -14,10 +15,11 @@ import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import Highlight from "@tiptap/extension-highlight";
 import Typography from "@tiptap/extension-typography";
+import {Link} from "@tiptap/extension-link";
+import Image from '@tiptap/extension-image';
 
 import {INote} from "@/models/inote";
-import {onBeforeUnmount, PropType, ref, watch} from "vue";
-import {Link} from "@tiptap/extension-link";
+import {onBeforeUnmount, PropType, provide, ref, watch} from "vue";
 
 const props = defineProps({
   modelValue: {
@@ -25,7 +27,7 @@ const props = defineProps({
   },
 });
 
-const emits = defineEmits(["update:modelValue"]);
+const emits = defineEmits(["update:modelValue", 'editor-ready']);
 
 const title = ref("");
 
@@ -39,6 +41,11 @@ const editor = useEditor({
     Highlight,
     Typography,
     Link,
+    Image.configure({
+      HTMLAttributes: {
+        class: 'w-100 block-image',
+      },
+    })
   ],
   autofocus: false,
   content: props.modelValue?.content,
@@ -46,6 +53,10 @@ const editor = useEditor({
     if (props.modelValue != undefined) {
       emitUpdate()
     }
+  },
+  onCreate({editor}) {
+    emits('editor-ready', editor)
+    provide('editor', editor)
   },
 });
 

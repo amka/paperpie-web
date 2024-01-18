@@ -13,7 +13,7 @@
   .tiptap {
     height: 100%;
 
-    > * {
+    * {
       -webkit-user-select: unset !important;
       user-select: unset !important;
     }
@@ -62,23 +62,26 @@
 
     h4 {
       margin-top: 1.2rem;
+      font-size: 1.2rem;
     }
 
     hr {
       border: none;
       max-width: 60%;
       margin: 1.4rem auto;
-      height: 5px;
-      color: rgb(var(--v-theme-on-surface));
+      height: 1px;
+      background: rgba(var(--v-theme-on-surface), 0.16);
+      color: rgba(var(--v-theme-on-surface), 0.7);
       overflow: visible;
       text-align: center;
 
       &::after {
         content: "§ § §";
-        padding: 0 4px;
+        padding: 0 8px;
         position: relative;
         font-size: small;
         top: -13px;
+        background-color: rgb(var(--v-theme-surface));
       }
     }
 
@@ -114,5 +117,9 @@
         font-size: 0.8rem;
       }
     }
+  }
+
+  .block-image {
+
   }
 }
