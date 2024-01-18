@@ -34,7 +34,11 @@ const title = ref("");
 // Define the initial state of the Editor
 const editor = useEditor({
   extensions: [
-    StarterKit,
+    StarterKit.configure({
+      heading: {
+        levels: [1, 2, 3, 4],
+      },
+    }),
     Placeholder.configure({
       placeholder: "Write something…",
     }),
@@ -43,7 +47,7 @@ const editor = useEditor({
     Link,
     Image.configure({
       HTMLAttributes: {
-        class: 'w-100 block-image',
+        class: 'block-image rounded-lg',
       },
     })
   ],
