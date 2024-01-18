@@ -1,74 +1,61 @@
 <template>
-  <v-toolbar class="toolbar-row" scroll-behavior="elevate">
-    <div class="toolbar-items">
-      <v-select
-        v-model="selectedNode"
-        :items="nodeItems"
-        density="compact"
-        variant="plain"
-        single-line
-      ></v-select>
 
-      <v-divider vertical />
+  <div class="toolbar-items">
 
-      <v-btn-group  density="compact">
-        <v-btn
-          :active="props.editor.isActive('bold')"
-          icon="bi bi-type-bold"
-          @click="props.editor.chain().focus().toggleMark('bold').run()"
-        />
-        <v-btn
-          :active="props.editor.isActive('italic')"
-          icon="bi bi-type-italic"
-          @click="props.editor.chain().focus().toggleMark('italic').run()"
-        />
-        <v-btn
-          :active="props.editor.isActive('underline')"
-          icon="bi bi-type-underline"
-          @click="props.editor.chain().focus().toggleMark('underline').run()"
-        />
-        <v-btn
-          :active="props.editor.isActive('strikethrough')"
-          icon="bi bi-type-strikethrough"
-          @click="props.editor.chain().focus().toggleMark('strike').run()"
-        />
-      </v-btn-group>
+    <v-select
+      v-model="selectedNode"
+      :items="nodeItems"
+      style="max-width: 260px"
+      variant="plain"
+    ></v-select>
 
-      <v-spacer />
-    </div>
-  </v-toolbar>
+    <v-divider class="mx-2" inset vertical/>
+
+    <v-btn v-for="mark in markItems"
+           :active="props.editor.isActive(mark.name)"
+           :icon="mark.icon"
+           density="comfortable"
+           @click="props.editor.chain().focus().toggleMark(mark.name).run()"
+    />
+
+    <v-divider class="mx-2" inset vertical/>
+
+    <v-spacer/>
+  </div>
+
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
+import {computed} from "vue";
 
 const props = defineProps(["editor"]);
 
 const nodeItems = ["Header", "Title", "Subtitle", "Normal"];
 
 const selectedNode = computed(() => {
-  if (props.editor?.isActive("heading", { level: 1 })) return "Header";
-  if (props.editor?.isActive("heading", { level: 2 })) return "Title";
-  if (props.editor?.isActive("heading", { level: 3 })) return "Subtitle";
+  if (props.editor?.isActive("heading", {level: 1})) return "Header";
+  if (props.editor?.isActive("heading", {level: 2})) return "Title";
+  if (props.editor?.isActive("heading", {level: 3})) return "Subtitle";
   else return "Normal";
 });
+
+const markItems = [
+  {name: 'bold', icon: 'bi bi-type-bold'},
+  {name: 'italic', icon: 'bi bi-type-italic'},
+  {name: 'underline', icon: 'bi bi-type-underline'},
+  {name: 'strike', icon: 'bi bi-type-strikethrough'},
+  {name: 'code', icon: 'bi bi-code'},
+]
 </script>
 
 <style lang="scss" scoped>
-.toolbar-row {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  backdrop-filter: blur(10px);
-  background-color: rgba(var(--v-theme-surface), 0.5);
-
-  .toolbar-items {
-    max-width: 920px;
-    margin: 0 auto;
-    flex: 100% 1 1;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-  }
+.toolbar-items {
+  max-width: 920px;
+  margin: 0 auto;
+  flex: 100% 1 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 </style>
