@@ -46,7 +46,7 @@ const _editor = ref<EditorType | undefined>()
 
 const onNoteCreate = () => {
   const note = notesStore.createNote()
-  router.push('/' + note.noteId)
+  router.push('/n/' + note.noteId)
 }
 </script>
 

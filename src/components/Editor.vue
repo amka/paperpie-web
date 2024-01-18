@@ -10,16 +10,15 @@
 </template>
 
 <script lang="ts" setup>
+import {onBeforeUnmount, PropType,  ref, watch} from "vue";
 import {EditorContent, useEditor} from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 import Highlight from "@tiptap/extension-highlight";
 import Typography from "@tiptap/extension-typography";
-import {Link} from "@tiptap/extension-link";
 import Image from '@tiptap/extension-image';
-
+import {Link} from "@tiptap/extension-link";
 import {INote} from "@/models/inote";
-import {onBeforeUnmount, PropType, provide, ref, watch} from "vue";
 
 const props = defineProps({
   modelValue: {
@@ -53,14 +52,13 @@ const editor = useEditor({
   ],
   autofocus: false,
   content: props.modelValue?.content,
-  onUpdate: ({editor}) => {
+  onUpdate: () => {
     if (props.modelValue != undefined) {
       emitUpdate()
     }
   },
   onCreate({editor}) {
     emits('editor-ready', editor)
-    provide('editor', editor)
   },
 });
 
