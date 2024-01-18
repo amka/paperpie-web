@@ -56,6 +56,9 @@ export const useNotesStore = defineStore("notes", {
     deleteNote(noteId: string) {
       const ix = this.notes.findIndex((n) => n.noteId == noteId);
       if (ix > 0) {
+        if (this.currentNote?.noteId == noteId) {
+          this.currentNote = undefined
+        }
         this.notes.splice(ix, 1);
       }
     },

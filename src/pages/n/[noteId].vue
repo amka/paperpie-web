@@ -3,7 +3,8 @@
     <v-toolbar class="toolbar-row" density="comfortable">
       <v-btn icon="bi bi-layout-sidebar" @click.stop="appState.sidebarVisible = !appState.sidebarVisible"/>
       <v-expand-transition>
-        <EditorToolbar v-if="_editor != undefined" :editor="_editor"/>
+        <EditorToolbar v-if="showEditControls" :editor="_editor" class="px-4"/>
+        <v-spacer/>
       </v-expand-transition>
       <v-btn icon="bi bi-layout-sidebar-inset-reverse"/>
     </v-toolbar>
@@ -24,13 +25,13 @@
 </template>
 
 <script lang="ts" setup>
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
+import {useRoute} from "vue-router";
 import {Editor as EditorType} from "@tiptap/vue-3";
 import {useNotesStore} from "@/store/notes";
 import {useAppStore} from "@/store/app";
 import Editor from "@/components/Editor.vue";
 import EditorToolbar from "@/components/EditorToolbar.vue";
-import {useRoute} from "vue-router";
 
 const appState = useAppStore();
 const notesStore = useNotesStore();
@@ -38,6 +39,11 @@ const _editor = ref<EditorType | undefined>()
 
 const route = useRoute();
 const noteId = ref<string | undefined>();
+
+const showEditControls = computed(() => {
+  return _editor.value && notesStore.currentNote
+})
+
 // Init watcher to update model from the outside
 const onEditorReady = (value: EditorType) => {
   _editor.value = value
